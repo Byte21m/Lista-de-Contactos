@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Contactos</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+    <main class="container">
+        
+        <h1>Lista de Contactos</h1>
+
+        <form id="contact-form" class="contact-form">
+            
+                <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" id="nombre" placeholder="Ej: Gabriel Garcia" class="error">
+                <p class="error-message" id="nombre-error" aria-live="polite">Tiene que tener nombre y apellido. Ambos comienzan con mayusculas.</p>
+            </div>
+            
+            <div class="form-group">
+                <label for="numero">Numero</label>
+                <input type="tel" id="numero" placeholder="Ej: 04124325641">
+                <p class="error-message" id="numero-error" aria-live="polite"></p>
+            </div>
+
+            <button type="submit" class="btn-crear">CREAR</button>
+        </form>
+
+        <div id="contact-list" class="contact-list">
+            
+            <div class="contact-item">
+                <input type="text" value="Gabriel Garcia" readonly>
+                <input type="tel" value="04142316435" readonly>
+                <button class="btn-edit">✏️</button>
+                <button class="btn-delete">❌</button>
+            </div>
+            
+            <div class="contact-item">
+                <input type="text" value="Alejadra Perez" readonly>
+                <input type="tel" value="04147772376" readonly>
+                <button class="btn-edit">✏️</button>
+                <button class="btn-delete">❌</button>
+            </div>
+            
+            <div class="contact-item">
+                <input type="text" value="Jose Sandoval" readonly>
+                <input type="tel" value="04141313131" readonly>
+                <button class="btn-edit">✏️</button>
+                <button class="btn-delete">❌</button>
+            </div>
+            
+            <div class="contact-item">
+                <input type="text" value="Daniela Sanchez" readonly>
+                <input type="tel" value="04141215432" readonly>
+                <button class="btn-edit">✏️</button>
+                <button class="btn-delete">❌</button>
+            </div>
+
+             <div class="contact-item">
+                <input type="text" value="Artur Amador" readonly>
+                <input type="tel" value="04145432133" readonly>
+                <button class="btn-edit">✏️</button>
+                <button class="btn-delete">❌</button>
+            </div>
+
+        </div>
+
+    </main>
+
+    </body>
+</html>

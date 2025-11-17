@@ -1,0 +1,243 @@
+/* --- 1. Variables y Configuración Global --- */
+:root {
+    /* Tema Claro (Default) */
+    --color-bg: #f4f7f6;
+    --color-surface: #ffffff;
+    --color-text: #1a1a1a;
+    --color-text-light: #555;
+    --color-border: #dcdcdc;
+    --color-border-focus: #7c73e6;
+    --color-primary: #7c73e6; /* Morado del botón crear */
+    --color-primary-hover: #6a60c4;
+    --color-error: #d9534f;
+    --color-edit-bg: #5bc0de;
+    --color-edit-hover: #07abdd;
+    --color-delete-bg: #e78c88;
+    --color-delete-hover: #c9302c;
+    --color-icon: #ffffff;
+}
+
+/* Tema Oscuro  */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-bg: #1a1a1a;
+        --color-surface: #2c2c2c;
+        --color-text: #f0f0f0;
+        --color-text-light: #aaa;
+        --color-border: #444;
+        --color-border-focus: #9a90f0;
+        --color-primary: #9a90f0;
+        --color-primary-hover: #ada4f4;
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.6;
+  
+}
+
+/* --- 2. Contenedor Principal --- */
+.container {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    background-color: var(--color-surface);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: var(--color-primary);
+}
+
+/* --- 3. Formulario --- [cite: 20] */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 0.25rem;
+    font-weight: 600;
+    color: var(--color-text-light);
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="tel"] {
+    padding: 0.75rem;
+    border: 2px solid var(--color-border);
+    border-radius: 6px;
+    font-size: 1rem;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    transition: border-color 0.2s ease;
+}
+
+.contact-form input[type="text"]:focus,
+.contact-form input[type="tel"]:focus {
+    outline: none;
+    border-color: var(--color-border-focus);
+}
+
+/* --- 4. Estilos de Error --- [cite: 26] */
+.form-group .error-message {
+    color: var(--color-error);
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    min-height: 1.2em; /* Reserva espacio para que no "salte" */
+}
+
+.contact-form input.error {
+    border-color: var(--color-error);
+    background-color: #fff8f8;
+}
+
+@media (prefers-color-scheme: dark) {
+    .contact-form input.error {
+        background-color: #3a2e2e;
+    }
+}
+
+
+/* --- 5. Botones (Crear y Acciones) --- */
+.btn-crear {
+    padding: 0.85rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #ffffff;
+    background-color: var(--color-primary);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-crear:hover {
+    background-color: var(--color-primary-hover);
+}
+
+.contact-item {
+    display: grid;
+    /* Usamos 'grid' para alinear todo fácilmente */
+    grid-template-columns: 1fr 1fr auto auto;
+    gap: 0.75rem;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--color-border);
+}
+
+/* Inputs de la lista [cite: 36] */
+.contact-item input[type="text"],
+.contact-item input[type="tel"] {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background-color: transparent;
+    color: var(--color-text);
+    /* Quita la apariencia de input hasta que se edita */
+    pointer-events: none;
+}
+
+/* Estilo cuando está en modo edición */
+.contact-item.editing input {
+    pointer-events: auto;
+    background-color: var(--color-bg);
+    border-color: var(--color-border-focus);
+}
+
+.contact-item .btn-edit,
+.contact-item .btn-delete {
+    border: none;
+    color: var(--color-icon);
+    padding: 0.5rem 0.75rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.contact-item .btn-edit {
+    background-color: var(--color-edit-bg); /* Color Editar  */
+}
+.contact-item .btn-delete {
+    background-color: var(--color-delete-bg); /* Color Borrar  */
+}
+
+/* Hover y Selección Móvil  */
+.contact-item .btn-edit:hover {
+    background-color: var(--color-edit-hover);
+}
+.contact-item .btn-edit:active { /* 'active' funciona bien en móvil */
+    transform: scale(0.95);
+}
+
+.contact-item .btn-delete:hover {
+    background-color: var(--color-delete-hover);
+}
+.contact-item .btn-delete:active {
+    transform: scale(0.95);
+}
+
+
+/* --- 7. Responsividad ---  */
+@media (max-width: 640px) {
+    body {
+        height: auto;
+        overflow: auto; /* Permite scroll en móviles pequeños */
+    }
+
+    .container {
+        margin: 0;
+        padding: 1rem;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    h1 {
+        font-size: 1.75rem;
+        margin-bottom: 1rem;
+    }
+    
+    .contact-item {
+        /* Hacemos que los botones pasen abajo */
+        grid-template-columns: 1fr 1fr;
+        gap: 0.5rem;
+    }
+
+    .contact-item .btn-edit {
+        grid-column: 1; /* Botón editar en columna 1 */
+    }
+    
+    .contact-item .btn-delete {
+        grid-column: 2; /* Botón borrar en columna 2 */
+    }
+    
+    .contact-item input[type="text"] {
+        grid-column: 1 / 3; /* Input nombre ocupa 2 columnas */
+    }
+    .contact-item input[type="tel"] {
+        grid-column: 1 / 3; /* Input número ocupa 2 columnas */
+    }
+}
